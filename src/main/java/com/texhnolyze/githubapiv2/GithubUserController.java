@@ -14,7 +14,7 @@ public class GithubUserController {
     private final String LIST_MEMBERS = "https://api.github.com/orgs/Escihu-Wizards/members";
     private final String ADD_MEMBERS = "https://api.github.com/orgs/Escihu-Wizards/invitations";
 
-    private final String TOKEN = "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";
+    private final String TOKEN = "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";
 
     @Autowired
     private WebClient.Builder webClientBuilder;
