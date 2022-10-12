@@ -25,6 +25,10 @@ Este endpoint regresa una lista con los nombres de usuarios y sus ids
 
 Este endpoint se usa mandar de manera automatica invitaciones a quienes 
 ponga su correo
+```
+http://localhost:8080/users/add
+
+```
 
 ```json
 {
