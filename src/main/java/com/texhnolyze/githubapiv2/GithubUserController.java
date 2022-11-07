@@ -22,7 +22,7 @@ public class GithubUserController {
     private final String LIST_MEMBERS = "https://api.github.com/orgs/Escihu-Wizards/members";
     private final String ADD_MEMBERS = "https://api.github.com/orgs/Escihu-Wizards/invitations";
 
-    private final String TOKEN = "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";
+    private final String TOKEN = "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";
 
     @Autowired
     private WebClient.Builder webClientBuilder;
