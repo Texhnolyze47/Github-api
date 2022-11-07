@@ -69,12 +69,12 @@ public class GithubUserController {
      * de github
      */
     @GetMapping("/all")
-    public Flux<GithubUserDTO> getAllMembers() {
+    public Flux<GithubUser> getAllMembers() {
 
         return webClientBuilder.build().get().uri(LIST_MEMBERS)
                 .header("Authorization", "Bearer " + TOKEN)
                 .retrieve()
-                .bodyToFlux(GithubUserDTO.class);
+                .bodyToFlux(GithubUser.class);
     }
 
 
