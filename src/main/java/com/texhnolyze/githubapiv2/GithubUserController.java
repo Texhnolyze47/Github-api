@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.util.retry.Retry;
+
+import java.time.Duration;
 
 
 @RestController
@@ -14,7 +17,7 @@ public class GithubUserController {
     private final String LIST_MEMBERS = "https://api.github.com/orgs/Escihu-Wizards/members";
     private final String ADD_MEMBERS = "https://api.github.com/orgs/Escihu-Wizards/invitations";
 
-    private final String TOKEN = "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";
+    private final String TOKEN = "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";
 
     @Autowired
     private WebClient.Builder webClientBuilder;
@@ -38,6 +41,7 @@ public class GithubUserController {
                 .body(BodyInserters.fromValue(user))
                 .retrieve()
                 .bodyToMono(Members.class).log()
+                .retryWhen(Retry.backoff( 3, Duration.ofSeconds(5)))
                 .block();
 
 
