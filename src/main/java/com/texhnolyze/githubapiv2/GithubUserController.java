@@ -11,7 +11,10 @@ import reactor.util.retry.Retry;
 
 import java.time.Duration;
 
-
+/**
+ * Esta clase se encarga de tener los métodos necesarios para consultar una lista integrantes y
+ * enviar invitaciones
+ */
 @RestController
 @RequestMapping("/users")
 public class GithubUserController {
