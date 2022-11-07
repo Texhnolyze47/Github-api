@@ -45,9 +45,12 @@ public class GithubUserController {
                         .header("Authorization", "Bearer " + TOKEN)
                         .body(BodyInserters.fromValue(user))
                         .retrieve()
-                        .bodyToMono(Members.class).log()
+                        .bodyToMono(Members.class)
                         .retryWhen(Retry.backoff( 3, Duration.ofSeconds(5))
-                                .filter(ex -> WebClientFilter.is5xxException(ex)))
+                                .filter(ex -> WebClientFilter.is5xxException(ex))
+                                .onRetryExhaustedThrow(((retryBackoffSpec, retrySignal) ->
+                                        new ServiceException("Intentos maximos alcanzados", HttpStatus.SERVICE_UNAVAILABLE.value()))))
+
                         .block();
                 return miembro;
 
