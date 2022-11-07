@@ -46,8 +46,10 @@ public class GithubUserController {
                         .body(BodyInserters.fromValue(user))
                         .retrieve()
                         .bodyToMono(Members.class)
+                        // limita la cantidad de requests que se envian
                         .retryWhen(Retry.backoff( 3, Duration.ofSeconds(5))
                                 .filter(ex -> WebClientFilter.is5xxException(ex))
+                                // excepción en caso se pase el límite requests fallidos
                                 .onRetryExhaustedThrow(((retryBackoffSpec, retrySignal) ->
                                         new ServiceException("Intentos maximos alcanzados", HttpStatus.SERVICE_UNAVAILABLE.value()))))
 
