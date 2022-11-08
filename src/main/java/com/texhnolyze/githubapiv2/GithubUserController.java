@@ -1,6 +1,7 @@
 package com.texhnolyze.githubapiv2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -22,12 +23,15 @@ public class GithubUserController {
     private final String LIST_MEMBERS = "https://api.github.com/orgs/Escihu-Wizards/members";
     private final String ADD_MEMBERS = "https://api.github.com/orgs/Escihu-Wizards/invitations";
 
-    private final String TOKEN = "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";
 
     @Autowired
     private WebClient.Builder webClientBuilder;
 
+    @Value("${app.token}")
+    private String token;
 
+
+    @CrossOrigin
     /**
      * Este método hace la función de usar el Api de Github para mandar un json a la
      * api de github, cuando esto se hace de forma exitosa el usuario recibe una
@@ -43,7 +47,7 @@ public class GithubUserController {
                 return webClientBuilder.build()
                         .post()
                         .uri(ADD_MEMBERS)
-                        .header("Authorization", "Bearer " + TOKEN)
+                        .header("Authorization", "Bearer " + token)
                         .body(BodyInserters.fromValue(user))
                         .retrieve()
                         .bodyToMono(Members.class)
@@ -72,7 +76,7 @@ public class GithubUserController {
     public Flux<GithubUser> getAllMembers() {
 
         return webClientBuilder.build().get().uri(LIST_MEMBERS)
-                .header("Authorization", "Bearer " + TOKEN)
+                .header("Authorization", "Bearer " + token)
                 .retrieve()
                 .bodyToFlux(GithubUser.class);
     }
