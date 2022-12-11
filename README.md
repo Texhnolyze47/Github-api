@@ -9,7 +9,7 @@ en caso tener la version ultimate de IDEA Intellij
 mediante el Http Client que integra Intellij.
 
 ```
-http://localhost:8080/users/GetAll
+http://localhost:8080/users/all
 ```
 Este endpoint regresa una lista con los nombres de usuarios y sus ids
 
