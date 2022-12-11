@@ -31,7 +31,6 @@ public class GithubUserController {
     private String token;
 
 
-    @CrossOrigin
     /**
      * Este método hace la función de usar el Api de Github para mandar un json a la
      * api de github, cuando esto se hace de forma exitosa el usuario recibe una
@@ -40,6 +39,7 @@ public class GithubUserController {
      * @param user un objeto de tipo Members
      * @return Members es un objeto que se manda como un json al api de github
      */
+    @CrossOrigin
     @PostMapping("/add")
     public Members addMembers(@RequestBody Members user) {
 
@@ -57,7 +57,6 @@ public class GithubUserController {
                                 // excepción en caso se pase el límite requests fallidos
                                 .onRetryExhaustedThrow(((retryBackoffSpec, retrySignal) ->
                                         new ServiceException("Intentos máximos alcanzados", HttpStatus.SERVICE_UNAVAILABLE.value()))))
-
                         .block();
 
             }catch (WebClientRequestException we){
