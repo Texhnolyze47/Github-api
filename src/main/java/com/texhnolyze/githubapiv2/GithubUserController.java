@@ -39,6 +39,7 @@ public class GithubUserController {
      * @param user un objeto de tipo Members
      * @return Members es un objeto que se manda como un json al api de github
      */
+    @CrossOrigin
     @PostMapping("/add")
     public Members addMembers(@RequestBody Members user) {
 
@@ -70,6 +71,7 @@ public class GithubUserController {
      * Este método tiene la función de simplemente regresar una lista de usuarios que pertenecen a la org
      * de github
      */
+    @CrossOrigin
     @GetMapping("/all")
     public Flux<GithubUser> getAllMembers() {
 
