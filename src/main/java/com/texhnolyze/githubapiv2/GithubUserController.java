@@ -29,8 +29,11 @@ public class GithubUserController {
 
     @Value("${app.token}")
     private String token;
-
-
+    @CrossOrigin
+    @GetMapping("/")
+    public String index(){
+        return "Usa la url https://github-invitation.azurewebsites.net/users/all para usa la api";
+    }
     /**
      * Este método hace la función de usar el Api de Github para mandar un json a la
      * api de github, cuando esto se hace de forma exitosa el usuario recibe una
