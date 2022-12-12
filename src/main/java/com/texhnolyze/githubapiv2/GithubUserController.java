@@ -39,7 +39,7 @@ public class GithubUserController {
      * @param user un objeto de tipo Members
      * @return Members es un objeto que se manda como un json al api de github
      */
-    @CrossOrigin(origins = "https://escihu-wizards.netlify.app/")
+    @CrossOrigin(origins = "https://escihu-wizards.netlify.app")
     @PostMapping("/add")
     public Members addMembers(@RequestBody Members user) {
 
