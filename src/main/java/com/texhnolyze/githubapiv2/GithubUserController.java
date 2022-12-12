@@ -43,25 +43,25 @@ public class GithubUserController {
     @PostMapping("/add")
     public Members addMembers(@RequestBody Members user) {
 
-            try {
-                return webClientBuilder.build()
-                        .post()
-                        .uri(ADD_MEMBERS)
-                        .header("Authorization", "Bearer " + token)
-                        .body(BodyInserters.fromValue(user))
-                        .retrieve()
-                        .bodyToMono(Members.class)
-                        // limita la cantidad de requests que se envían
-                        .retryWhen(Retry.backoff( 3, Duration.ofSeconds(5))
-                                .filter(ex -> WebClientFilter.is5xxException(ex))
-                                // excepción en caso se pase el límite requests fallidos
-                                .onRetryExhaustedThrow(((retryBackoffSpec, retrySignal) ->
-                                        new ServiceException("Intentos máximos alcanzados", HttpStatus.SERVICE_UNAVAILABLE.value()))))
-                        .block();
+        try {
+            return webClientBuilder.build()
+                    .post()
+                    .uri(ADD_MEMBERS)
+                    .header("Authorization", "Bearer " + token)
+                    .body(BodyInserters.fromValue(user))
+                    .retrieve()
+                    .bodyToMono(Members.class)
+                    // limita la cantidad de requests que se envían
+                    .retryWhen(Retry.backoff(3, Duration.ofSeconds(5))
+                            .filter(ex -> WebClientFilter.is5xxException(ex))
+                            // excepción en caso se pase el límite requests fallidos
+                            .onRetryExhaustedThrow(((retryBackoffSpec, retrySignal) ->
+                                    new ServiceException("Intentos máximos alcanzados", HttpStatus.SERVICE_UNAVAILABLE.value()))))
+                    .block();
 
-            }catch (WebClientRequestException we){
-                throw new ServiceException(we.getMessage());
-            }
+        } catch (WebClientRequestException we) {
+            throw new ServiceException(we.getMessage());
+        }
 
 
     }
