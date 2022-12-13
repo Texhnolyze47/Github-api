@@ -41,6 +41,7 @@ public class GithubUserController {
      * @param user un objeto de tipo Members
      * @return Members es un objeto que se manda como un json al api de github
      */
+    @CrossOrigin
     @PostMapping("/add")
     public Members addMembers(@RequestBody Members user) {
 
