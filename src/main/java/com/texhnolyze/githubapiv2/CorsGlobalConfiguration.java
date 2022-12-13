@@ -11,7 +11,5 @@ public class CorsGlobalConfiguration implements WebFluxConfigurer {
                 .allowedOrigins("https://escihu-wizards.netlify.app")
                 .allowedMethods("GET","POST")
                 .maxAge(3600);
-
-
     }
 }

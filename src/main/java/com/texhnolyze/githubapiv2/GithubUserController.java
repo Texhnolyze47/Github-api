@@ -63,8 +63,6 @@ public class GithubUserController {
         } catch (WebClientRequestException we) {
             throw new ServiceException(we.getMessage());
         }
-
-
     }
 
 
@@ -80,6 +78,4 @@ public class GithubUserController {
                 .retrieve()
                 .bodyToFlux(GithubUser.class);
     }
-
-
 }
