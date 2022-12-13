@@ -29,7 +29,6 @@ public class GithubUserController {
 
     @Value("${app.token}")
     private String token;
-    @CrossOrigin
     @GetMapping("/")
     public String index(){
         return "Usa la url https://github-invitation.azurewebsites.net/users/all para usa la api";
@@ -42,7 +41,6 @@ public class GithubUserController {
      * @param user un objeto de tipo Members
      * @return Members es un objeto que se manda como un json al api de github
      */
-    @CrossOrigin(origins = "")
     @PostMapping("/add")
     public Members addMembers(@RequestBody Members user) {
 
@@ -74,7 +72,6 @@ public class GithubUserController {
      * Este método tiene la función de simplemente regresar una lista de usuarios que pertenecen a la org
      * de github
      */
-    @CrossOrigin
     @GetMapping("/all")
     public Flux<GithubUser> getAllMembers() {
 
