@@ -1,13 +1,15 @@
 package com.texhnolyze.githubapiv2;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class Members {
 
     private String org = "Escihu-Wizards";
-    @NotNull(message = "Debe escribir su correo")
-    @Email(message = "El correo no es correcto")
+    @NotBlank(message = "Debes escribir su correo")
+    @Size(min = 1, message = "Debes tu correo completo.")
+    @Pattern(regexp = "([a-z])+@([a-z])+\\.com", message = "El correo no es correcto")
     private String email;
     private String role = "direct_member";
 
