@@ -1,5 +1,7 @@
 package com.texhnolyze.githubapiv2;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -17,6 +19,7 @@ public class GithubUserController {
     @Autowired
     private MemberService memberService;
 
+    Logger logger = LoggerFactory.getLogger(GithubUserController.class);
 
     @GetMapping("/")
     public String index(){
@@ -26,6 +29,7 @@ public class GithubUserController {
     @CrossOrigin("https://escihu-wizards.netlify.app")
     @PostMapping("/add")
     public Members addMembers(@Valid @RequestBody Members user) {
+        logger.warn("Se registro de manera correcta el " + user.getEmail());
         return this.memberService.addMembers(user);
     }
 
