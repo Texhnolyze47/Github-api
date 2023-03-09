@@ -1,9 +1,19 @@
 package com.texhnolyze.githubapiv2.entities;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Members {
 
     private String org = "Escihu-Wizards";
@@ -13,27 +23,4 @@ public class Members {
     private String email;
     private String role = "direct_member";
 
-    public String getOrg() {
-        return org;
-    }
-
-    public void setOrg(String org) {
-        this.org = org;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }
