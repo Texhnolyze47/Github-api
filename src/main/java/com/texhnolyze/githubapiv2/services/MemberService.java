@@ -1,5 +1,7 @@
-package com.texhnolyze.githubapiv2;
+package com.texhnolyze.githubapiv2.services;
 
+import com.texhnolyze.githubapiv2.dto.GithubUser;
+import com.texhnolyze.githubapiv2.entities.Members;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

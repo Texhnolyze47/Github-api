@@ -1,4 +1,4 @@
-package com.texhnolyze.githubapiv2;
+package com.texhnolyze.githubapiv2.dto;
 
 public class GithubUser {
     private String login;

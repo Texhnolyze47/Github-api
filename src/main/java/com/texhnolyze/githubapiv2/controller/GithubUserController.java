@@ -1,5 +1,8 @@
-package com.texhnolyze.githubapiv2;
+package com.texhnolyze.githubapiv2.controller;
 
+import com.texhnolyze.githubapiv2.dto.GithubUser;
+import com.texhnolyze.githubapiv2.entities.Members;
+import com.texhnolyze.githubapiv2.services.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +25,6 @@ public class GithubUserController {
     Logger logger = LoggerFactory.getLogger(GithubUserController.class);
 
     @GetMapping("/")
-    public String index(){
-        return "Usa la url https://github-invitation.azurewebsites.net/users/all para usa la api";
-    }
 
     @CrossOrigin("https://escihu-wizards.netlify.app")
     @PostMapping("/add")

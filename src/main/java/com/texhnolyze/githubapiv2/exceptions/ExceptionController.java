@@ -1,4 +1,4 @@
-package com.texhnolyze.githubapiv2;
+package com.texhnolyze.githubapiv2.exceptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
