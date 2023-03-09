@@ -1,8 +1,13 @@
 package com.texhnolyze.githubapiv2.controller;
 
 import com.texhnolyze.githubapiv2.entities.Members;
+import com.texhnolyze.githubapiv2.exceptions.MemberRegistrationException;
 import com.texhnolyze.githubapiv2.services.MemberService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 
@@ -21,8 +26,11 @@ public class GithubUserController {
     }
 
     @PostMapping("/add")
-    public Mono<String> registerUser(@RequestBody Members members){
-        return memberService.registerMember(members).map( response -> "Usuario resgistrado");
+    public Mono<ResponseEntity<String>> registerUser(@RequestBody Members members){
+        return memberService.registerMember(members)
+                .map( response -> "Usuario registrado")
+                .map(ResponseEntity::ok)
+                .onErrorMap(HttpMessageNotReadableException.class, ex -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()));
     }
 
 }

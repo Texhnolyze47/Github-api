@@ -9,6 +9,6 @@ import reactor.core.publisher.Mono;
 
 
 public interface MemberService {
-    Mono<String> registerMember(@RequestBody  Members members);
+    Mono<Members> registerMember(@RequestBody  Members members);
 
 }
